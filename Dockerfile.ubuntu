@@ -1,12 +1,10 @@
 FROM ubuntu:latest
-MAINTAINER Ming Chen <cmink2040@gmail.com>
+LABEL com.tsmks.source.image.authors="cmink@tsmks.com"
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update -q && apt-get install -qy \
-    texlive-full \
-    python-pygments gnuplot \
-    make git \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt update -y && apt install -y
+RUN apt install texlive-full -y
+RUN apt install texlive-latex-extra -y
 
 WORKDIR /data
 VOLUME ["/data"]

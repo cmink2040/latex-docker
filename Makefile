@@ -1,18 +1,16 @@
-NS = blang
-REPO = latex
-IMAGE = $(NS)/$(REPO)
+DOCKER_USERNAME := cmink2040
+REPO_NAME := latex-compiler
 
-.PHONY: build build_ubuntu build_basic build_full
+.PHONY: build_all push_all
 
-build: build_ubuntu build_basic build_full
+build_all:
+    docker build -t $(DOCKER_USERNAME)/$(REPO_NAME):ctanbasic -f Dockerfile.basic .
+	docker build -t $(DOCKER_USERNAME)/$(REPO_NAME):ctanfull -f Dockerfile.ctanfull .
+	docker build -t $(DOCKER_USERNAME)/$(REPO_NAME):ubuntu -f Dockerfile.ubuntu .
+    # Add more build commands for additional Docker images if needed
 
-build_ubuntu: Dockerfile.ubuntu
-	@docker build -f Dockerfile.ubuntu -t $(IMAGE):ubuntu .
+push_all:
+    docker push $(DOCKER_USERNAME)/$(REPO_NAME):image1
+    docker push $(DOCKER_USERNAME)/$(REPO_NAME):image2
+    # Add more push commands for additional Docker images if needed
 
-build_basic: Dockerfile.basic
-	@docker build -f Dockerfile.basic -t $(IMAGE):ctanbasic .
-
-build_full: build_basic Dockerfile.full
-	@docker build -f Dockerfile.full -t $(IMAGE):ctanfull .
-
-default: build
