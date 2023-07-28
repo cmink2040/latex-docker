@@ -1,5 +1,6 @@
 FROM ubuntu:latest
-MAINTAINER Benedikt Lang <mail@blang.io>
+LABEL com.tsmks.source.image.authors="cmink@tsmks.com"
+
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -q \

@@ -1,4 +1,4 @@
 FROM blang/latex:ctanbasic
-MAINTAINER Benedikt Lang <mail@blang.io>
+LABEL com.tsmks.source.image.authors="cmink@tsmks.com"
 
 RUN tlmgr install scheme-full
